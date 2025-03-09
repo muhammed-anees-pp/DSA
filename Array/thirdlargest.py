@@ -1,3 +1,8 @@
+"""
+Find the third largest element from the array
+
+"""
+
 def thirdlargest(arr):
 
     largest = 0
