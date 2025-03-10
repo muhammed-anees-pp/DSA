@@ -1,4 +1,3 @@
-Your `README.md` file should provide a clear and concise introduction to your repository. Here’s a suggested structure:  
 
 ---
 
@@ -34,5 +33,3 @@ This is a personal learning repository, but feel free to open issues or suggest 
 If you have any questions, you can reach out to me via [LinkedIn](https://www.linkedin.com/in/muhammed-anees-p-p/) or email me at **muhammedanees.work@gmail.com**.  
 
 ---
-
-Let me know if you want any modifications! 😊
