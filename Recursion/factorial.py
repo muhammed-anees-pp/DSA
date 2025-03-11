@@ -7,4 +7,5 @@ def factorial(num):
     
     return num*factorial(num-1)
 
+# Example Usage:
 print(factorial(6))

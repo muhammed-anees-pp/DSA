@@ -7,7 +7,7 @@ def fibnocci(num):
     
     return fibnocci(num - 1) + fibnocci(num - 2)
 
-
+# Example Usage:
 new = []
 for i in range(10):
     new.append(fibnocci(i))
