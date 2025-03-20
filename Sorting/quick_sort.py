@@ -25,8 +25,6 @@ num = [5, 1, 4, 2, 8]
 num1= [4, 1, 3, 9, 7]
 num2= [2, 1, 6, 10, 4, 1, 3, 9, 7]
 
-
-
 print(quick_sort(num))
 print(quick_sort(num1))
 print(quick_sort(num2))

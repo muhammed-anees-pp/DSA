@@ -14,6 +14,7 @@ num1 = [4, 1, 3, 9, 7]
 num2 =  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 num3 = [1, 2, 3, 4, 5]
 
+
 print(bubble_sort(num1))
 print(bubble_sort(num2))
 print(bubble_sort(num3))

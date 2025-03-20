@@ -21,6 +21,7 @@ num = [7, 5, 9, 2, 8]
 num1 = [13,46,24,52,20,9]
 num2 = [5,4,3,2,1]
 
+
 print(selection_sort(num))
 print(selection_sort(num1))
 print(selection_sort(num2))
