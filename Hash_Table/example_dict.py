@@ -7,6 +7,8 @@ hash_table["age"] = 20
 hash_table["city"] = "Malappuram"
 
 
+
+
 # Access values (O(1) average time)
 print(hash_table["name"])  # Output: Anees
 

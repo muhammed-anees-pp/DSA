@@ -43,3 +43,5 @@ ht.display()
 print(ht.get("name"))  # Output: Anees
 ht.remove("age")
 ht.display()
+
+
