@@ -11,8 +11,6 @@ def insertion_sort(arr):
         arr[j+1] = key  # Place key at the correct position
     return arr
 
-
-
 # Example test case
 num1 = [4, 1, 3, 9, 7]
 num2 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
