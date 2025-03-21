@@ -20,6 +20,7 @@ def quick_sort(arr):
     # Recursively sort left and right parts and combine them with the middle
     return quick_sort(left) + middle + quick_sort(right)
 
+
 # Example test case
 num = [5, 1, 4, 2, 8]
 num1= [4, 1, 3, 9, 7]
