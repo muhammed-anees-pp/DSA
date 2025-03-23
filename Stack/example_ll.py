@@ -1,3 +1,7 @@
+"""
+Stack using linked list
+"""
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -23,9 +27,9 @@ class Stack:
     def display(self):
         temp = self.top
         while temp:
-            print(temp.data, end=" -> ")
+            print(temp.data, end=" ")
             temp = temp.next
-        print("None")
+        print("")
         
 # Example test case
 s = Stack()

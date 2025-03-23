@@ -1,3 +1,7 @@
+"""
+Reverse a string using stack
+"""
+
 def reverse_string(s):
     stack = []  
     

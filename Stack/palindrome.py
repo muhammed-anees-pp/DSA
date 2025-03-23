@@ -1,3 +1,7 @@
+"""
+Check the str is palindrome using stack
+"""
+
 def reverse_string(s):
     stack = []  
     
