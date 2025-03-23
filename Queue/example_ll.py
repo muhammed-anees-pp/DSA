@@ -27,9 +27,9 @@ class Queue:
     def display(self):
         temp = self.start
         while temp:
-            print(temp.data, end=" -> ")
+            print(temp.data, end=" ")
             temp = temp.next
-        print("None")
+        print("")
 
 
 # Example test case
