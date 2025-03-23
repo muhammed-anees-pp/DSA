@@ -1,3 +1,6 @@
+"""
+Queue using deque
+"""
 from collections import deque
 
 class Queue:
