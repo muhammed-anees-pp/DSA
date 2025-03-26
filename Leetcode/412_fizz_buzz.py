@@ -15,6 +15,8 @@ def fizzBuzz(num):
         
     return answer
 
+
+# Print results of checking both examples
 print(fizzBuzz(3))
 print(fizzBuzz(5))
 print(fizzBuzz(15))
