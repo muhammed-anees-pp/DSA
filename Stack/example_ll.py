@@ -10,11 +10,13 @@ class Node:
 class Stack:
     def __init__(self):
         self.top = None
+        self.count = 0
     
     def push(self, data):
         new_node = Node(data)
         new_node.next = self.top
         self.top = new_node
+        self.count += 1
     
     def pop(self):
         if not self.top:
@@ -22,7 +24,11 @@ class Stack:
         
         popped_data = self.top.data
         self.top = self.top.next
+        self.count -= 1
         return popped_data
+    
+    def size(self):
+        return self.count
     
     def display(self):
         temp = self.top
@@ -39,3 +45,4 @@ s.push(30)
 s.display()  
 print("Popped:", s.pop()) 
 s.display() 
+print("Size: ", s.size())

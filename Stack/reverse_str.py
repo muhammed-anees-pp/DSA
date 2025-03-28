@@ -1,7 +1,7 @@
 """
 Reverse a string using stack
 """
-
+# Method 1
 def reverse_string(s):
     stack = []  
     
@@ -20,3 +20,11 @@ def reverse_string(s):
 # Example Usage
 string = "hello"
 print(reverse_string(string))  # Output: "olleh"
+
+
+# Method 2
+def reverse_str(str):    
+    return str[::-1]
+
+print(reverse_str("malayalam"))
+print(reverse_str("anees"))
