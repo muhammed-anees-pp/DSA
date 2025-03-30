@@ -32,7 +32,6 @@ class HashTable:
         for i, bucket in enumerate(self.table):
             print(f"Index {i}: {bucket}")
 
-
 # Example test case
 ht = HashTable()
 ht.insert("name", "Anees")
@@ -43,5 +42,3 @@ ht.display()
 print(ht.get("name"))  # Output: Anees
 ht.remove("age")
 ht.display()
-
-
