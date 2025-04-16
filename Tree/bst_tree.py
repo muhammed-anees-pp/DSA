@@ -107,6 +107,37 @@ class BST:
             node.right = self.delete(temp.value, node.right)
         return node
         
+    # Search
+    def search(self,key):
+        def _search(node,key):
+            if node is None:
+                return False
+            if node.value == key:
+                return True
+            elif key < node.value:
+                return _search(node.left,key)
+            else:
+                return _search(node.right,key)
+        return _search(self.root, key)
+    
+    # Height
+    def height(self,node):
+        if node is None:
+            return -1
+        
+        return max(self.height(node.left), self.height(node.right)) + 1
+    
+    # Depth
+    def find_depth(self,root,key,depth=0):
+        if root is None:
+            return -1
+        if root.value == key:
+            return depth
+        left_depth = self.find_depth(root.left, key, depth + 1)
+        if left_depth != -1:
+            return left_depth
+        return self.find_depth(root.right, key, depth + 1)
+        
 
 # Examples
 bst = BST()
@@ -118,10 +149,9 @@ bst.insert(40)
 bst.insert(60)
 bst.insert(80)
 print("Level Order: ", bst.level_order())
+print(bst.search(60))
 
-        
-
-
+    
 
 """
 # Structure
@@ -285,7 +315,18 @@ print("Level Order: ", bst.level_order())
 
             
 
+# Search (60)
+    Step 1:
+        Start at the root, which is 50.
+        60 > 50, so go to the right subtree.
 
+    Step 2:
+        Now at 70.
+        60 < 70, so go to the left subtree.
+
+    Step 3:
+        Now at 60.
+        60 == 60, match found → return True.
 
 
 
