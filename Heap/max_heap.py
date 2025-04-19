@@ -40,6 +40,13 @@ class MaxHeap:
         if largest != ind:
             self.heap[largest], self.heap[ind] = self.heap[ind],self.heap[largest]
             self.heapify_down(largest)
+    
+    # Build Heap from a list
+    def build_heap(self, arr):
+        self.heap = list(arr)
+        for i in range((len(self.heap) // 2) - 1, -1, -1):
+            self.heapify_down(i)
+
     # Peek    
     def peek(self):
         if self.heap:
@@ -79,9 +86,10 @@ print(h.isEmpty())
 h.clear()
 print(h.isEmpty())
         
-        
-        
-        
+h.build_heap([20, 30, 60, 50, 40, 70])
+print("Heap after build:", h.get_heap())  # Should print a valid max heap
+
+
         
         
         

@@ -40,6 +40,13 @@ class MinHeap:
             self.heap[smallest], self.heap[ind] = self.heap[ind],self.heap[smallest]
             self.heapify_down(smallest)
     
+    # Build Heap from a list
+    def build_heap(self, arr):
+        self.heap = list(arr)
+        for i in range((len(self.heap) // 2) - 1, -1, -1):
+            self.heapify_down(i)
+
+
     # Peek
     def peek(self):
         if not self.heap:
@@ -80,7 +87,8 @@ print(h.isEmpty())
 h.clear()
 print(h.isEmpty())
 
-
+h.build_heap([20, 30, 60, 50, 40, 70])
+print("Heap after build:", h.get_heap())
 
 """
 # Insert
