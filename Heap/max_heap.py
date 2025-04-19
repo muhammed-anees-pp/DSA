@@ -1,68 +1,95 @@
 class MaxHeap:
-    def __init__(self) -> None:
+    def __init__(self):
         self.heap = []
-
-    def insert(self, value):
+    
+    # Insert
+    def insert(self,value):
         self.heap.append(value)
-        self._heapify_up(len(self.heap) - 1)
-
-    def _heapify_up(self, idx):
-        parent_idx = (idx - 1)//2
-        if idx > 0 and self.heap[parent_idx] < self.heap[idx]:
-            self.heap[parent_idx], self.heap[idx] = self.heap[idx], self.heap[parent_idx]
-            self._heapify_up(parent_idx)
-
+        self.heapify_up(len(self.heap) - 1)
+    
+    # Heapify up
+    def heapify_up(self,ind):
+        parent_ind = (ind - 1) // 2
+        if ind > 0 and self.heap[parent_ind] < self.heap[ind]:
+            self.heap[parent_ind], self.heap[ind] = self.heap[ind], self.heap[parent_ind]
+            self.heapify_up(parent_ind)
+    
+    # Delete
     def delete(self):
         if not self.heap:
             return False
+        
         if len(self.heap) == 1:
             return self.heap.pop()
-        del_node = self.heap[0]
+        
+        root_node = self.heap[0]
         self.heap[0] = self.heap.pop()
-        self._heapify_down(0)
-        return del_node
-
-    def _heapify_down(self, idx):
-        large_idx = idx
-        left_idx = 2 * idx + 1
-        right_idx = 2 * idx + 2
-        if left_idx < len(self.heap) and self.heap[large_idx] < self.heap[left_idx]:
-            large_idx = left_idx
-        if right_idx < len(self.heap) and self.heap[large_idx] < self.heap[right_idx]:
-            large_idx = right_idx
-        if large_idx != idx:
-            self.heap[large_idx], self.heap[idx] = self.heap[idx], self.heap[large_idx]
-            self._heapify_down(large_idx)
-
+        self.heapify_down(0)
+        return root_node
+    
+    # Heapify Down
+    def heapify_down(self,ind):
+        largest = ind
+        left = (2*ind) + 1
+        right = (2*ind) + 2
+        if left < len(self.heap) and self.heap[largest] < self.heap[left]:
+            largest = left
+        if right < len(self.heap) and self.heap[largest] < self.heap[right]:
+            largest = right
+        
+        if largest != ind:
+            self.heap[largest], self.heap[ind] = self.heap[ind],self.heap[largest]
+            self.heapify_down(largest)
+    # Peek    
     def peek(self):
         if self.heap:
             return self.heap[0]
         else:
             return None
-
-    def get_heap(self):
-        return self.heap
-
+    
+    # Clear
     def clear(self):
         self.heap = []
-
+    
+    # Size
     def get_size(self):
         return len(self.heap)
-
+    
+    # Empty Check
     def isEmpty(self):
         return len(self.heap) == 0
-
-
-max_heap = MaxHeap()
-max_heap.insert(10)
-max_heap.insert(20)
-max_heap.insert(30)
-max_heap.insert(4)
-max_heap.insert(25)
-heap_values = max_heap.get_heap()
-print(heap_values)
-max_heap.delete()
-heap_values = max_heap.get_heap()
-print(heap_values)
-print(max_heap.get_size())
-print(max_heap.peek())
+    
+    # Display
+    def get_heap(self):
+        return self.heap
+        
+h = MaxHeap()
+h.insert(50)
+h.insert(40)
+h.insert(70)
+h.insert(30)
+h.insert(20)
+h.insert(60)
+print(h.get_heap())
+h.delete()
+print(h.get_heap())
+print(h.peek())
+print(h.get_size())
+print(h.isEmpty())
+h.clear()
+print(h.isEmpty())
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
