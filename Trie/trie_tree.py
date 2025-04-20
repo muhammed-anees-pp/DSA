@@ -49,6 +49,82 @@ class Tree:
             current = current.child[ind]
         return True
     
+    # Delete
+    def delete_key(self,key):
+        def _delete(current, key, depth):
+            if current is None:
+                return False
+            if depth == len(key):
+                if current.end:
+                    current.end = False
+                    return not any(current.child)
+                return False
+            ind = ord(key[depth]) - ord('a')
+            delete_current_node = _delete(current.child[ind], key,depth + 1)
+            if delete_current_node:
+                current.child[ind] = None
+                return not current.end and not any(current.child)
+            return False
+        return _delete(self.root, key, 0)
+    
+    # Autocomplete
+    def autocomplete(self,prefix):
+        current = self.root
+        for char in prefix:
+            ind = ord(char) - ord('a')
+            if not current.child[ind]:
+                return []
+            current = current.child[ind]
+        
+        result = []
+        self._collect_words(current, prefix,result)
+        return result
+    
+    # Collect Words
+    def _collect_words(self,node, word, result):
+        if node.end:
+            result.append(word)
+        for i in range(26):
+            if node.child[i]:
+                self._collect_words(node.child[i], word + chr(i + ord('a')), result)
+    
+    # Longest Prefix
+    def longest_prefix(self):
+        current = self.root
+        prefix = ''
+        while current and sum(child is not None for child in current.child) == 1 and not current.end:
+            for i in range(26):
+                if current.child[i]:
+                    prefix += chr(i + ord('a'))
+                    current = current.child[i]
+                    break
+        return prefix
+    
+    # Count Words with Prefix
+    def count_words_with_prefix(self,prefix):
+        current = self.root
+        for char in prefix:
+            ind = ord(char) - ord('a')
+            if not current.child[ind]:
+                return 0
+            current = current.child[ind]
+        return current.count
+        
+    # Unique Prefix
+    
+            
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Example     
 tr = Tree()
@@ -57,6 +133,12 @@ tr.insert("apple")
 tr.insert("apt")
 tr.insert("bat")
 tr.display()
+print()
+tr.delete_key("bat")
+tr.display()
+print(tr.autocomplete("a"))
+print(tr.longest_prefix())
+print(tr.count_words_with_prefix("ap"))
 
 print(tr.search("app"))    # ✅ Returns True (because "app" is a complete word)
 print(tr.search("appl"))  # ❌ Returns False (not marked as complete word)
@@ -66,7 +148,7 @@ print(tr.prefixsearch("app"))    # ✅ True
 print(tr.prefixsearch("appl"))   # ✅ True
 print(tr.prefixsearch("apple"))  # ✅ True
 print(tr.prefixsearch("appley")) # ❌ False
-print(tr.prefixsearch("bat"))    # # ✅ True
+print(tr.prefixsearch("bat"))    # ✅ True
 
 
 """
