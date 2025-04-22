@@ -111,20 +111,20 @@ class Tree:
         return current.count
         
     # Unique Prefix
+    def unique_prefix(self,key):
+        current = self.root
+        prefix = ''
+        for char in key:
+            ind = ord(char) - ord('a')
+            if not current.child[ind]: 
+                return "Word not found"
+            if current.child[ind].count == 1:
+                prefix += char
+                return prefix
+            prefix += char
+            current = current.child[ind]
+        return prefix
     
-            
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Example     
 tr = Tree()
@@ -138,7 +138,8 @@ tr.delete_key("bat")
 tr.display()
 print(tr.autocomplete("a"))
 print(tr.longest_prefix())
-print(tr.count_words_with_prefix("ap"))
+print(tr.count_words_with_prefix("app"))
+print(tr.unique_prefix("apple"))
 
 print(tr.search("app"))    # ✅ Returns True (because "app" is a complete word)
 print(tr.search("appl"))  # ❌ Returns False (not marked as complete word)
@@ -319,13 +320,58 @@ Inserting ["app", "apple", "apt"]
             └── p
                 └── p (end=True)  ← "app"
 
+# Auto Complete
+    autocomplete("ap")
 
-
+    Step-by-Step:
+        Start at root.
+        Traverse 'a' → valid.
+        Traverse 'p' → valid.
+        Call _collect_words() from here.
+        From 'ap' node, the following paths exist:
+        'p' → 'app'
+        'p' + 'l' + 'e' → 'apple'
+        't' → 'apt'
     
+    Output:
+        ['app', 'apple', 'apt']
 
+# Longest Prefix
+    Let’s say the Trie contains only these words:
+    "app", "apple", "apt"
 
+    Step-by-step Execution:
+        Start at root → prefix = ''
+        'a' is the only child → add 'a' → prefix = 'a'
+        Move to 'a' node → only child is 'p' → add 'p' → prefix = 'ap'
+        Move to 'p' → there are two children ('p' and 't')
+        → branching happens, so stop here
+        👉 Longest common prefix = "ap"
+                
 
+# Unique Prefix
+    ✅ Word: "app"
+        'a' → count = 3 (used by app, apple, apt) → not unique → prefix = 'a'
+        'p' → count = 3 (used by app, apple, apt) → not unique → prefix = 'ap'
+        'p' → count = 2 (used by app, apple) → not unique → prefix = 'app'
+        There’s no character with count = 1 in the path, but "app" is a complete word, so we still use it.
+        👉 Unique prefix = "app"
 
+    ✅ Word: "apple"
+        'a' → count = 3 → not unique → prefix = 'a'
+        'p' → count = 3 → not unique → prefix = 'ap'
+        'p' → count = 2 → not unique → prefix = 'app'
+        'l' → count = 1 → unique! ✅
+        👉 Unique prefix = "appl"
 
+    ✅ Word: "apt"
+        'a' → count = 3 → not unique → prefix = 'a'
+        'p' → count = 3 → not unique → prefix = 'ap'
+        't' → count = 1 → unique! ✅
+        👉 Unique prefix = "apt"
 
+    ✅ Word: "bat"
+        'b' → count = 1 → only one word starts with 'b' → unique! ✅
+        👉 Unique prefix = "b"
+    
 """
