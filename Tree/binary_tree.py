@@ -174,7 +174,55 @@ class Tree:
             if current.right:
                 queue.append(current.right)
         return max_value
+    
+    # Second Largest
+    def second_largest(self):
+        if self.root is None:
+            return None
         
+        queue = [self.root]
+        largest = float('-inf')
+        second_large = float('-inf')
+        
+        while queue:
+            current = queue.pop(0)
+            
+            if current.value > largest:
+                second_large = largest
+                largest = current.value
+            if current.value > second_large and current.value < largest:
+                second_large = current.value
+            
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+            
+        return second_large
+    
+    # Second smallest
+    def second_smallest(self):
+        if self.root is None:
+            return None
+        
+        queue = [self.root]
+        smallest = float('inf')
+        second_smallest = float('inf')
+        
+        while queue:
+            current = queue.pop(0)
+            
+            if current.value < smallest:
+                second_smallest = smallest
+                smallest = current.value
+            elif current.value < second_smallest and current.value > smallest:
+                second_smallest = current.value
+            
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return second_smallest
 
 # Operations
 tr = Tree()
@@ -202,6 +250,10 @@ print("Inorder Traversal: ", end="")
 tr.inorder(tr.root)
 print("\nPostorder Traversal: ", end="")
 tr.postorder(tr.root)
+print("\nSecond Largest:", tr.second_largest())
+
+print("Second Smallest:", tr.second_smallest())
+
 
 
 
