@@ -79,7 +79,7 @@ class BST:
             return None
         while node.left:
             node = node.left
-        return node
+        return node.value
     
     # Find Maximum
     def find_max(self, node):
@@ -87,25 +87,30 @@ class BST:
             return None
         while node.right:
             node = node.right
-        return node
+        return node.value
     
     # Delete
-    def delete(self, key, node):
-        if node is None:  
-            return None
+    def delete(self, node, key):
+        if node is None:
+            return None  # Return None instead of False
+        
         if key < node.value:
-            node.left = self.delete(key, node.left)
+            node.left = self.delete(node.left, key)
         elif key > node.value:
-            node.right = self.delete(key, node.right)
+            node.right = self.delete(node.right, key)
         else:
+            # Case 1: No left child
             if node.left is None:
                 return node.right
-            if node.right is None:
+            # Case 2: No right child
+            elif node.right is None:
                 return node.left
-            temp = self.find_min(node.right)
-            node.value = temp.value
-            node.right = self.delete(temp.value, node.right)
-        return node
+            # Case 3: Two children
+            else:
+                temp = self.find_min(node.right)  # Get minimum value in right subtree
+                node.value = temp  # Copy the value
+                node.right = self.delete(node.right, temp)  # Delete the minimum node
+        return node  # Always return the node (or None)
         
     # Search
     def search(self,key):
@@ -254,6 +259,20 @@ class BST:
         
         self.k_count = 0
         return reverse_inorder(self.root)
+    
+    # No of Leaf Nodes
+    def count_leaf_nodes(self):
+        return self._count_nodes(self.root)
+
+    ## Count Leaf Nodes
+    def _count_nodes(self,node):
+        if node is None:
+            return 0
+        
+        if node.left is None and node.right is None:
+            return 1
+        
+        return self._count_nodes(node.left) + self._count_nodes(node.right)
 
 
 # Examples
@@ -270,6 +289,7 @@ print(bst.search(60))
 print("Sum of nodes:", bst.sum_of_nodes())
 print("Closest Node: ", bst.find_close_node(65))
 print("Tree is BST:", bst.is_bst())
+print("Min Number: ", bst.find_min(bst.root))
 
 print("Second Smallest:", bst.second_smallest())  # ➝ 30
 print("Third Smallest:", bst.third_smallest())    # ➝ 40
@@ -281,6 +301,7 @@ print("Second Smallest:", bst.kth_smallest(2))  # ➝ 30
 print("Third Smallest:", bst.kth_smallest(3))    # ➝ 40
 print("Second Largest:", bst.kth_largest(2))    # ➝ 70
 print("Third Largest:", bst.kth_largest(3))      # ➝ 60
+print("Leaf nodes count:",bst.count_leaf_nodes())
 
     
 
