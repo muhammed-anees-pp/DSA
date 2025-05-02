@@ -258,37 +258,23 @@ Inserting ["app", "apple", "apt"]
 
     Recursive Steps:
         📍 Depth 0: 'a'
-        python
-        Copy
-        Edit
         ind = 0
         _delete(current.child[0], "apple", 1)
 
         📍 Depth 1: 'p'
         python
-        Copy
-        Edit
         ind = 15
         _delete(current.child[15], "apple", 2)
 
         📍 Depth 2: 'p'
-        python
-        Copy
-        Edit
         ind = 15
         _delete(current.child[15], "apple", 3)
 
         📍 Depth 3: 'l'
-        python
-        Copy
-        Edit
         ind = 11
         _delete(current.child[11], "apple", 4)
 
         📍 Depth 4: 'e'
-        python
-        Copy
-        Edit
         ind = 4
         _delete(current.child[4], "apple", 5)
 
