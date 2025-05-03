@@ -10,6 +10,8 @@ class Digraph:
         if start not in self.dict:
             self.dict[start] = []
         self.dict[start].append(end)
+        if end not in self.dict:
+            self.dict[end] = []
         
     # Add Edges
     def add_edges(self,vertex, edges):
