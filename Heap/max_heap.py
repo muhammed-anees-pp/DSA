@@ -27,6 +27,20 @@ class MaxHeap:
         self.heapify_down(0)
         return root_node
     
+    # Delete Element
+    def delete_element(self,value):
+        if value not in self.heap:
+            return False
+
+        ind = self.heap.index(value)
+        self.heap[ind] = self.heap[-1]
+        self.heap.pop()
+
+        if ind < len(self.heap):
+            self.heapify_up(ind)
+            self.heapify_down(ind)
+        return True
+
     # Heapify Down
     def heapify_down(self,ind):
         largest = ind
@@ -46,6 +60,18 @@ class MaxHeap:
         self.heap = list(arr)
         for i in range((len(self.heap) // 2) - 1, -1, -1):
             self.heapify_down(i)
+    
+
+    # Heap Sort
+    def heap_sort(self):
+        temp_heap = MaxHeap()
+        temp_heap.build_heap(self.heap)
+
+        sorted_list = []
+        
+        while temp_heap.heap:
+            sorted_list.insert(0,temp_heap.delete())
+        return sorted_list
 
     # Peek    
     def peek(self):
@@ -54,6 +80,26 @@ class MaxHeap:
         else:
             return None
     
+    # Search
+    def search(self,value):
+        if value in self.heap:
+            return True
+        else:
+            return False
+        
+    # Find Kth Largest
+    def find_kth_largest(self,k):
+        if k > len(self.heap):
+            return None
+        
+        temp_heap = MaxHeap()
+        temp_heap.build_heap(self.heap)
+        result = None
+
+        for _ in range(k):
+            result = temp_heap.delete()
+        return result
+
     # Clear
     def clear(self):
         self.heap = []
@@ -90,6 +136,16 @@ h.build_heap([20, 30, 60, 50, 40, 70])
 print("Heap after build:", h.get_heap())  # Should print a valid max heap
 
 
+arr = [10, 20, 50, 30, 40, 90, 70, 100, 60, 80]
+h.build_heap(arr)
+print("Heap:", h.get_heap())
+h.insert(110)
+print("After insert 110:", h.get_heap())
+print("Kth largest (3rd):", h.find_kth_largest(3))
+print("Search 70:", h.search(70))
+print("Delete 70:", h.delete_element(70))
+print("After deleting 70:", h.get_heap())
+print("Heap sort:", h.heap_sort())
         
         
         

@@ -39,6 +39,20 @@ class MinHeap:
         if smallest != ind:
             self.heap[smallest], self.heap[ind] = self.heap[ind],self.heap[smallest]
             self.heapify_down(smallest)
+
+    # Delete Element
+    def delete_element(self,value):
+        if value not in self.heap:
+            return False
+        
+        ind = self.heap.index(value)
+        self.heap[ind] = self.heap[-1]
+        self.heap.pop()
+
+        if ind < len(self.heap):
+            self.heapify_up(ind)
+            self.heapify_down(ind)
+        return True
     
     # Build Heap from a list
     def build_heap(self, arr):
@@ -46,12 +60,43 @@ class MinHeap:
         for i in range((len(self.heap) // 2) - 1, -1, -1):
             self.heapify_down(i)
 
+    # Find Kth Smallest
+    def find_kth_smallest(self,k):
+        if k > len(self.heap):
+            return None
+        
+        temp_heap = MinHeap()
+        temp_heap.build_heap(self.heap)
+        result = None
+
+        for _ in range(k):
+            result = temp_heap.delete()
+        return result
+    
+    # Heap Sort DSC
+    def heap_sort(self):
+        temp_heap = MinHeap()
+        temp_heap.build_heap(self.heap)
+        
+        sorted_list = []
+
+        while temp_heap.heap:
+            sorted_list.insert(0,temp_heap.delete())
+        return sorted_list
+
 
     # Peek
     def peek(self):
         if not self.heap:
             return None
         return self.heap[0]
+    
+    # Search
+    def search(self,value):
+        if value in self.heap:
+            return True
+        else:
+            return False
     
     # Size
     def size(self):
@@ -89,6 +134,18 @@ print(h.isEmpty())
 
 h.build_heap([20, 30, 60, 50, 40, 70])
 print("Heap after build:", h.get_heap())
+
+
+arr = [10, 20, 50, 30, 40, 90, 70, 100, 60, 80]
+h.build_heap(arr)
+print("Heap:", h.get_heap())
+h.insert(110)
+print("After insert 110:", h.get_heap())
+print("Kth largest (3rd):", h.find_kth_smallest(3))
+print("Search 70:", h.search(70))
+print("Delete 70:", h.delete_element(70))
+print("After deleting 70:", h.get_heap())
+print("Heap sort:", h.heap_sort())
 
 """
 # Insert
