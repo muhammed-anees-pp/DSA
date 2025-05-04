@@ -223,6 +223,20 @@ class Tree:
             if current.right:
                 queue.append(current.right)
         return second_smallest
+    
+    # Count the No.of Leaf Nodes
+    def count_leaf_nodes(self):
+        return self._count_leaf(self.root)
+    
+    def _count_leaf(self,node):
+        if node is None:
+            return 0
+        
+        if node.left is None and node.right is None:
+            return 1
+        
+        return self._count_leaf(node.left) + self._count_leaf(node.right)
+
 
 # Operations
 tr = Tree()
