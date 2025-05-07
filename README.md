@@ -30,6 +30,6 @@ For detailed notes, check out my Notion page:
 This is a personal learning repository, but feel free to open issues or suggest improvements!  
 
 ## 📬 Contact  
-If you have any questions, you can reach out to me via [LinkedIn](https://www.linkedin.com/in/muhammed-anees-p-p/) or email me at **muhammedanees.work@gmail.com**.  
+If you have any questions, you can reach out to me via [LinkedIn](https://www.linkedin.com/in/muhammed-anees-p-p/) or email me at **muhammedanees.work@gmail.com**.
 
 ---
