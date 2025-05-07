@@ -13,6 +13,7 @@ This repository contains my **Data Structures and Algorithms (DSA)** practice in
 
 ## 🔗 Notes & Resources  
 For detailed notes, check out my Notion page:  
+
 [👉 My DSA Notes](https://www.notion.so/Data-Structure-Algorithms-1a843b0812b280d49951f2e3a7e69b1c)  
 
 ## 🚀 How to Use  
@@ -30,6 +31,6 @@ For detailed notes, check out my Notion page:
 This is a personal learning repository, but feel free to open issues or suggest improvements!  
 
 ## 📬 Contact  
-If you have any questions, you can reach out to me via [LinkedIn](https://www.linkedin.com/in/muhammed-anees-p-p/) or email me at **muhammedanees.work@gmail.com**.  
+If you have any questions, you can reach out to me via [LinkedIn](https://www.linkedin.com/in/muhammed-anees-p-p/) or email me at **muhammedanees.work@gmail.com**.
 
 ---
