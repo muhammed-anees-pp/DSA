@@ -1,8 +1,8 @@
 import heapq
 
-class WeightedDirectedGraphMatrix:
+class WeightedUndirectedGraphMatrix:
     def __init__(self, size=5):
-        """Initializes an adjacency matrix for a weighted directed graph."""
+        """Initializes an adjacency matrix for a weighted undirected graph."""
         self.size = size
         self.matrix = [[float('inf')] * size for _ in range(size)]  # Create NxN matrix
         for i in range(size):
@@ -17,18 +17,20 @@ class WeightedDirectedGraphMatrix:
         self.matrix[-1][-1] = 0  # Distance to itself is 0
 
     def add_edge(self, u, v, weight):
-        """Adds a directed weighted edge (u → v)."""
+        """Adds an undirected weighted edge (u ↔ v)."""
         if u >= self.size or v >= self.size:
             print(f"Error: Node {max(u, v)} does not exist.")
             return
-        self.matrix[u][v] = weight  # u → v (directed)
+        self.matrix[u][v] = weight  # u → v
+        self.matrix[v][u] = weight  # v → u (undirected)
 
     def remove_edge(self, u, v):
-        """Removes a directed edge (u → v)."""
+        """Removes an undirected edge (u ↔ v)."""
         if u >= self.size or v >= self.size:
             print(f"Error: Node {max(u, v)} does not exist.")
             return
-        self.matrix[u][v] = float('inf')  # Reset edge to infinity
+        self.matrix[u][v] = float('inf')  # Remove edge u → v
+        self.matrix[v][u] = float('inf')  # Remove edge v → u (undirected)
 
     def remove_vertex(self, vertex):
         """Removes a vertex and updates the adjacency matrix."""
@@ -84,7 +86,7 @@ class WeightedDirectedGraphMatrix:
 
 
 # Example Usage:
-graph = WeightedDirectedGraphMatrix(6)  # Create a graph with 6 vertices
+graph = WeightedUndirectedGraphMatrix(6)  # Create a graph with 6 vertices
 
 edges = [(0, 1, 2), (0, 2, 5), (1, 3, 1), (2, 4, 3), (3, 4, 4), (4, 5, 2)]
 for u, v, w in edges:
